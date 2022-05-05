@@ -1,4 +1,11 @@
-import { createContext, useContext, useState, ReactNode } from 'react'
+import {
+  createContext,
+  useContext,
+  useState,
+  ReactNode,
+  Dispatch,
+  SetStateAction
+} from 'react'
 
 import bugImageUrl from '../../assets/bug.svg'
 import IdeaImageUrl from '../../assets/idea.svg'
@@ -35,13 +42,19 @@ interface FeedbackContextProps {
 }
 
 interface FeedbackContextData {
-  feedbackType: FeedbackType | null
+  feedbackTypes: typeof feedbackTypes
+  feedbackType: null | FeedbackType
   setFeedbackType: (type: FeedbackType) => void
+  feedbackSent: boolean
+  setFeedbackSent: Dispatch<SetStateAction<boolean>>
+  handleRestartFeedback: () => void
 }
 
 const FeedbackContext = createContext({} as FeedbackContextData)
 
-export function FeedbackContextProvider({ children }: FeedbackContextProps) {
+export default function FeedbackContextProvider({
+  children
+}: FeedbackContextProps) {
   const [feedbackType, setFeedbackType] = useState<null | FeedbackType>(null)
   const [feedbackSent, setFeedbackSent] = useState(false)
 
@@ -53,13 +66,16 @@ export function FeedbackContextProvider({ children }: FeedbackContextProps) {
   return (
     <FeedbackContext.Provider
       value={{
+        feedbackTypes,
         feedbackType,
         setFeedbackType,
         feedbackSent,
         setFeedbackSent,
         handleRestartFeedback
       }}
-    ></FeedbackContext.Provider>
+    >
+      {children}
+    </FeedbackContext.Provider>
   )
 }
 
