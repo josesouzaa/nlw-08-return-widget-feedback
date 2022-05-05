@@ -7,11 +7,11 @@ import {
   SetStateAction
 } from 'react'
 
-import bugImageUrl from '../../assets/bug.svg'
-import IdeaImageUrl from '../../assets/idea.svg'
-import thoughtImageUrl from '../../assets/thought.svg'
+import bugImageUrl from '../assets/bug.svg'
+import IdeaImageUrl from '../assets/idea.svg'
+import thoughtImageUrl from '../assets/thought.svg'
 
-export const feedbackTypes = {
+const feedbackTypes = {
   BUG: {
     title: 'Problema',
     image: {

@@ -1,12 +1,10 @@
+import { useFeedbackContext } from '../../../contexts/FeedbackContext'
+
 import CloseButton from '../../CloseButton'
 
-interface FeedbackSuccessStepProps {
-  onFeedbackRestartRequested: () => void
-}
+export default function FeedbackSuccessStep() {
+  const { handleRestartFeedback } = useFeedbackContext()
 
-export default function FeedbackSuccessStep({
-  onFeedbackRestartRequested
-}: FeedbackSuccessStepProps) {
   return (
     <>
       <header>
@@ -33,7 +31,7 @@ export default function FeedbackSuccessStep({
           <span className="text-xl mt-2">Agradecemos o feedback!</span>
 
           <button
-            onClick={onFeedbackRestartRequested}
+            onClick={handleRestartFeedback}
             className="py-2 px-6 mt-6 bg-zinc-800 rounded-md border-transparent text-sm leading-6 hover:bg-zinc-700 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-zinc-900 focus:ring-brand-500"
           >
             Quero enviar outro
